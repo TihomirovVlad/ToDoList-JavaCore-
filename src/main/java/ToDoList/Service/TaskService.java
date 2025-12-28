@@ -12,4 +12,5 @@ public interface TaskService {
     public void removeTask(int id);
     public List<Task> getTasks();
     public Task findTaskById(int id);
+    public List<Task> getTasksByPriority(Priority priority);
 }
