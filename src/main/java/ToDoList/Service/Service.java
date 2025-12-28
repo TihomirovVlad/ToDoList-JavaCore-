@@ -6,6 +6,7 @@ import ToDoList.Model.Task;
 import ToDoList.Repository.TaskRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Service implements TaskService{
     TaskRepository taskRepository = new TaskRepository();
@@ -45,5 +46,12 @@ public class Service implements TaskService{
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Task> getTasksByPriority(Priority priority){
+        return taskRepository.getTasks().stream()
+                .filter(p->p.getPriority() == priority)
+                .collect(Collectors.toList());
     }
 }
