@@ -10,11 +10,10 @@ public class Task {
     Priority priority;
     boolean isDone;
 
-    public Task(String title, String description, Priority priority, boolean isDone) {
+    public Task(String title, String description, Priority priority) {
         this.title = title;
         this.description = description;
         this.priority = priority;
-        this.isDone = isDone;
     }
 
     public int getId() {
