@@ -1,5 +1,6 @@
 package ToDoList.Repository;
 
+import ToDoList.Model.Priority;
 import ToDoList.Model.Task;
 
 import java.util.ArrayList;
@@ -11,35 +12,19 @@ public class TaskRepository {
     List<Task> tasks = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public void addTask(Task task) {
-        System.out.println("input title");
-        String title = scanner.nextLine();
-        task.setTitle(title);
-        System.out.println("input description");
-        String description = scanner.nextLine();
-        task.setDescription(description);
-
-        if (task!=null){
-            tasks.add(task);
-        }
+    public void addTask(String title, String description, Priority priority) {
+        tasks.add(new Task(title,description,priority));
     }
 
-    public void removeTask(int id) {
-        tasks.remove(id);
+    public void removeTask(Task task) {
+        tasks.remove(task);
     }
 
-    public void findAll(){
-        for (Task task : tasks) {
-            System.out.println(task);
-        }
+    public List<Task> getTasks(){
+        return this.tasks;
     }
 
     public void findById(int id){
-        for (Task task : tasks) {
-            if (task.getId() == id) {
-                System.out.println("Task found");
-                System.out.println(task);
-            }
-        }
+
     }
 }
