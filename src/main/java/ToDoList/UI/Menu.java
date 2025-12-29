@@ -32,17 +32,31 @@ public class Menu {
             case 2:
                 removeTask();
                 break;
-            case 3:
-                getTasks();
+            case 3: {
+                List<Task> tasks = getTasks();
+                if (tasks.isEmpty()) {
+                    System.out.println("There are no tasks in this list");
+                }
+                else{
+                    for (Task task : tasks) {
+                        System.out.println(task);
+                    }
+                }
                 break;
-            case 4:
-            {
+
+            }
+            case 4: {
                 Task taskById = findTaskById();
                 System.out.println(taskById);
                 break;
             }
-            case 5:
-                Task taskByPriority;
+            case 5: {
+                printTasks();
+                break;
+            }
+            case 6:
+                System.out.println("GoodBye");
+                break;
 
 
         }
@@ -56,7 +70,7 @@ public class Menu {
         System.out.println("Enter task description: ");
         String description = sc.nextLine();
         System.out.println("Enter task priority(Low, Medium, High): ");
-        Priority priority = Priority.valueOf(sc.nextLine());
+        Priority priority = Priority.valueOf(sc.nextLine().toUpperCase());
         service.addTask(title, description, priority);
     }
 
@@ -78,12 +92,13 @@ public class Menu {
         return task;
     }
 
-    public List<Task> printTasks() {
+    public void printTasks() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter task priority(Low, Medium, High): ");
-        Priority priority = Priority.valueOf(sc.nextLine());
+        Priority priority = Priority.valueOf(sc.nextLine().toUpperCase());
         List<Task> tasksByPriority = service.getTasksByPriority(priority);
-
-        return tasksByPriority;
+        for (Task task : tasksByPriority) {
+            System.out.println(task);
+        }
     }
 }
