@@ -1,30 +1,30 @@
 package ToDoList.Repository;
 
-import ToDoList.Model.Priority;
 import ToDoList.Model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Optional;
 
 public class TaskRepository {
 
-    List<Task> tasks = new ArrayList<>();
-    Scanner scanner = new Scanner(System.in);
+    private final List<Task> tasks = new ArrayList<>();
 
-    public void addTask(String title, String description, Priority priority) {
-        tasks.add(new Task(title,description,priority));
+    public void save(Task task) {
+        tasks.add(task);
     }
 
-    public void removeTask(Task task) {
+    public void delete(Task task) {
         tasks.remove(task);
     }
 
-    public List<Task> getTasks(){
-        return this.tasks;
+    public List<Task> findAll(){
+        return new ArrayList<>(tasks);
     }
 
-    public void findById(int id){
-
+    public Optional<Task> findById(int id){
+        return tasks.stream()
+                .filter(task->task.getId()==id)
+                .findFirst();
     }
 }
