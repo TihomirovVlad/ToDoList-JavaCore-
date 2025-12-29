@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface TaskService {
 
-    public void filterTasks();
     public void addTask(String title, String description, Priority priority);
     public void removeTask(int id);
     public List<Task> getTasks();
