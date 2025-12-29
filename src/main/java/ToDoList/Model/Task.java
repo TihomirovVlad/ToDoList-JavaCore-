@@ -4,13 +4,15 @@ import java.util.Random;
 
 public class Task {
 
-    private static int id = new Random().nextInt(100);
+    private static int idCounter = 1;
+    private int id;
     private String title;
     private String description;
     Priority priority;
     boolean isDone;
 
     public Task(String title, String description, Priority priority) {
+        this.id = idCounter++;
         this.title = title;
         this.description = description;
         this.priority = priority;
@@ -51,7 +53,7 @@ public class Task {
     }
     @Override
     public String toString() {
-        return "Task [id=" + id + ", title=" + title + ", description=" + description + ", priority=" + priority;
+        return "Task [id=" + id + ", title=" + title + ", description=" + description + ", priority=" + priority + "]";
     }
 
 }
